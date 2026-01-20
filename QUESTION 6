@@ -1,0 +1,17 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int a = 10;
+
+    cout << "Initial value of a = " << a;
+
+    a += 5;   
+    cout << "\nAfter a += 5, a = " << a;
+
+    a -= 3;  
+    cout << "\nAfter a -= 3, a = " << a;
+
+    return 0;
+}
