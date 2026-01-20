@@ -1,0 +1,20 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+    cout << "Hello\nWorld";         
+    cout << endl;
+
+    cout << "Hello\tWorld";          
+    cout << endl;
+
+    cout << "Hello\b World";         
+    cout << endl;
+
+    cout << "Hello" << endl << "World"; 
+
+    cout << setw(10) << "Hi";       
+    return 0;
+}
