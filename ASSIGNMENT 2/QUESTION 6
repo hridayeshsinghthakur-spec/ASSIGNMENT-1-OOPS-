@@ -1,0 +1,29 @@
+#include <iostream>
+
+int value = 100;
+
+class Demo {
+public:
+    static int count;
+    void showMessage();
+};
+
+int Demo::count = 50;
+
+void Demo::showMessage() {
+    std::cout << "Function defined outside the class using ::" << std::endl;
+}
+
+int main() {
+    int value = 10;
+
+    std::cout << "Local value: " << value << std::endl;
+    std::cout << "Global value using :: : " << ::value << std::endl;
+
+    Demo obj;
+    obj.showMessage();
+
+    std::cout << "Static variable accessed via class: " << Demo::count << std::endl;
+
+    return 0;
+}
