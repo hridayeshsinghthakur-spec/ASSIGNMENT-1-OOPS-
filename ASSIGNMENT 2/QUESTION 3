@@ -1,0 +1,44 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Student {
+private:
+    string name;
+    float currentCGPA;
+    string status;
+
+    bool isEligible() {
+        return currentCGPA >= 3.5;
+    }
+    void applyPromotion() {
+        status = "Honors Student";
+        cout << "System: Status updated internally." << endl;
+    }
+
+public:
+    Student(string n, float g) : name(n), currentCGPA(g), status("Regular") {}
+    void promoteStudent() {
+        cout << "Processing promotion for " << name << "..." << endl;
+        if (isEligible()) { 
+            applyPromotion();
+            cout << "Result: Promotion Successful!" << endl;
+        } else {
+            cout << "Result: Ineligible for promotion." << endl;
+        }
+    }
+
+    void display() {
+        cout << name << " | Status: " << status << " | CGPA: " << currentCGPA << endl;
+    }
+};
+
+int main() {
+    Student s1("Alex", 3.8);
+    s1.display();
+    s1.promoteStudent(); 
+    s1.display();
+
+    return 0;
+}
