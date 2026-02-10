@@ -1,0 +1,48 @@
+#include <iostream>
+
+using namespace std;
+
+class Counter {
+public:
+    int count;
+
+    void display() {
+        cout << "Count: " << count << endl;
+    }
+};
+
+
+Counter incrementByValue(Counter c) {
+    c.count += 10;
+    cout << "Inside Pass-by-Value function (modified copy): " << c.count << endl;
+    return c;
+}
+
+Counter& incrementByReference(Counter &c) {
+    c.count += 10;
+    cout << "Inside Pass-by-Reference function (modified original): " << c.count << endl;
+    return c;
+}
+
+int main() {
+    Counter obj1, obj2;
+    obj1.count = 50;
+    obj2.count = 50;
+
+    cout << "--- Testing Pass-by-Value ---" << endl;
+    cout << "Before: "; obj1.display();
+    
+    Counter resultV = incrementByValue(obj1);
+    
+    cout << "After function call, Original Obj1: "; obj1.display();
+    cout << "Returned Object: "; resultV.display();
+
+    cout << "\n--- Testing Pass-by-Reference ---" << endl;
+    cout << "Before: "; obj2.display();
+    
+    incrementByReference(obj2);
+    
+    cout << "After function call, Original Obj2: "; obj2.display();
+
+    return 0;
+}
