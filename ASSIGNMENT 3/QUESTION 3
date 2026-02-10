@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+
+class ClassB;
+
+class ClassA {
+private:
+    int numA;
+
+public:
+    void setNum(int val) {
+        numA = val;
+    }
+
+    friend int addData(ClassA objA, ClassB objB);
+};
+
+class ClassB {
+private:
+    int numB;
+
+public:
+    void setNum(int val) {
+        numB = val;
+    }
+
+    friend int addData(ClassA objA, ClassB objB);
+};
+
+int addData(ClassA objA, ClassB objB) {
+    return (objA.numA + objB.numB);
+}
+
+int main() {
+    ClassA a;
+    ClassB b;
+
+    a.setNum(15);
+    b.setNum(25);
+
+    cout << "Value in ClassA: 15" << endl;
+    cout << "Value in ClassB: 25" << endl;
+
+    int sum = addData(a, b);
+
+    cout << "Sum of data objects using friend function: " << sum << endl;
+
+    return 0;
+}
