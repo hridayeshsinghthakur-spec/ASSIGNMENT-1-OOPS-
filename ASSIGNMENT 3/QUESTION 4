@@ -1,0 +1,52 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Database {
+private:
+    string adminPassword;
+    int systemLogCount;
+
+public:
+    void setInitialData() {
+        adminPassword = "SafePassword123";
+        systemLogCount = 5;
+    }
+
+    friend class AdminTools;
+};
+
+class AdminTools {
+public:
+    void resetPassword(Database &db, string newPass) {
+        db.adminPassword = newPass;
+        cout << "AdminTools: Password successfully changed." << endl;
+    }
+
+    void increaseLog(Database &db) {
+        db.systemLogCount++;
+        cout << "AdminTools: Logs updated. Current count: " << db.systemLogCount << endl;
+    }
+
+    void viewStats(Database db) {
+        cout << "\n--- Database System Stats ---" << endl;
+        cout << "Admin Password: " << db.adminPassword << endl;
+        cout << "Total Logs:     " << db.systemLogCount << endl;
+    }
+};
+
+int main() {
+    Database myDB;
+    AdminTools tool;
+
+    myDB.setInitialData();
+
+    tool.viewStats(myDB);
+    
+    tool.resetPassword(myDB, "NewSecure789");
+    tool.increaseLog(myDB);
+    
+    tool.viewStats(myDB);
+
+    return 0;
+}
