@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+
+class Rectangle {
+private:
+    int length;
+    int width;
+
+public:
+    void setData() {
+        cout << "Enter length: ";
+        cin >> length;
+        cout << "Enter width: ";
+        cin >> width;
+    }
+
+    void calculateArea(int index) {
+        int area = length * width;
+        cout << "Rectangle " << index + 1 << ": Area = " << area << endl;
+    }
+};
+
+int main() {
+    int n;
+    cout << "How many rectangles? ";
+    cin >> n;
+
+    Rectangle rects[n];
+
+    for (int i = 0; i < n; i++) {
+        cout << "\nInput for Rectangle " << i + 1 << ":" << endl;
+        rects[i].setData();
+    }
+
+    cout << "\n--- Displaying Areas ---" << endl;
+    for (int i = 0; i < n; i++) {
+        rects[i].calculateArea(i);
+    }
+
+    return 0;
+}
