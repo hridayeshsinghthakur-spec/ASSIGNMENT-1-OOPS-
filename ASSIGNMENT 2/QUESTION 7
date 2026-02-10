@@ -1,0 +1,29 @@
+#include <iostream>
+
+namespace Science Department {
+    int id = 101;
+    void display() {
+        std::cout << "Department: Science" << std::endl;
+        std::cout << "ID: " << id << std::endl;
+    }
+}
+
+namespace ArtsDepartment {
+    int id = 202;
+    void display() {
+        std::cout << "Department: Arts" << std::endl;
+        std::cout << "ID: " << id << std::endl;
+    }
+}
+
+int main() {
+    ScienceDepartment::display();
+    std::cout << "Accessing Science ID directly: " << ScienceDepartment::id << std::endl;
+
+    std::cout << "--------------------------" << std::endl;
+
+    ArtsDepartment::display();
+    std::cout << "Accessing Arts ID directly: " << ArtsDepartment::id << std::endl;
+
+    return 0;
+}
