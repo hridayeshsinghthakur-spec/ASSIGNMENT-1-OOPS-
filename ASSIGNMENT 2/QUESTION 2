@@ -1,0 +1,69 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Student {
+private:
+    string name;
+    int rollNo;
+    string degree;
+    string hostel;
+    float currentCGPA;
+
+    void addDetails() {
+        cout << "\n--- Enter Student Details ---" << endl;
+        cout << "Name: ";
+        getline(cin >> ws, name);
+        cout << "Roll No: ";
+        cin >> rollNo;
+        cout << "Degree: ";
+        getline(cin >> ws, degree);
+        cout << "Hostel: ";
+        getline(cin >> ws, hostel);
+        cout << "Current CGPA: ";
+        cin >> currentCGPA;
+    }
+
+public:
+        void initializeStudent() {
+        cout << "Initializing new student record..." << endl;
+        addDetails(); 
+    }
+
+    void updateCGPA() {
+        cout << "\nUpdating CGPA for " << name << endl;
+        cout << "Enter new CGPA: ";
+        cin >> currentCGPA;
+    }
+
+    void updateHostel() {
+        cout << "\nUpdating Hostel for " << name << endl;
+        cout << "Enter new Hostel: ";
+        getline(cin >> ws, hostel);
+    }
+
+    void displayDetails() {
+        cout << "\n------- Student Record -------" << endl;
+        cout << "Name:    " << name << endl;
+        cout << "Roll No: " << rollNo << endl;
+        cout << "Degree:  " << degree << endl;
+        cout << "Hostel:  " << hostel << endl;
+        cout << "CGPA:    " << currentCGPA << endl;
+        cout << "------------------------------" << endl;
+    }
+};
+
+int main() {
+    Student s1;
+
+    // s1.name = "John"; // This would cause a COMPILE ERROR because name is private.
+    // s1.addDetails();  // This would cause a COMPILE ERROR because it's private.
+
+    s1.initializeStudent();
+    s1.displayDetails();
+    s1.updateCGPA();
+    s1.displayDetails();
+
+    return 0;
+}
