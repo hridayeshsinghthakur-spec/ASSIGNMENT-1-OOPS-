@@ -1,0 +1,64 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Student {
+    string name;
+    int rollNo;
+    string degree;
+    string hostel;
+    float currentCGPA;
+
+   
+    void addDetails() {
+        cout << "\n--- Enter Student Details ---" << endl;
+        cout << "Name: ";
+        getline(cin >> ws, name); 
+        cout << "Roll No: ";
+        cin >> rollNo;
+        cout << "Degree: ";
+        getline(cin >> ws, degree);
+        cout << "Hostel: ";
+        getline(cin >> ws, hostel);
+        cout << "Current CGPA: ";
+        cin >> currentCGPA;
+    }
+
+    void updateDetails() {
+        cout << "\nUpdating all details..." << endl;
+        addDetails();
+    }
+
+    void updateCGPA() {
+        cout << "\nEnter new CGPA for " << name << ": ";
+        cin >> currentCGPA;
+    }
+
+    void updateHostel() {
+        cout << "\nEnter new Hostel for " << name << ": ";
+        getline(cin >> ws, hostel);
+    }
+
+    void displayDetails() {
+        cout << "\n--- Student Record ---" << endl;
+        cout << "Name:    " << name << endl;
+        cout << "Roll No: " << rollNo << endl;
+        cout << "Degree:  " << degree << endl;
+        cout << "Hostel:  " << hostel << endl;
+        cout << "CGPA:    " << currentCGPA << endl;
+        cout << "----------------------" << endl;
+    }
+};
+
+int main() {
+    Student s;
+    s.addDetails();
+    s.displayDetails();
+    s.updateCGPA();
+    s.updateHostel();
+
+    cout << "\nDisplaying Updated Information:";
+    s.displayDetails();
+
+    return 0;
+}
