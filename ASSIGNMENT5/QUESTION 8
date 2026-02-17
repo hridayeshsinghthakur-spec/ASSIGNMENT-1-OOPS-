@@ -1,0 +1,70 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class LibraryUser {
+protected:
+    string name;
+    int id;
+    string contact;
+
+public:
+    void setBaseInfo(string n, int i, string c) {
+        name = n;
+        id = i;
+        contact = c;
+    }
+
+    void showBaseInfo() {
+        cout << "ID: " << id << " | Name: " << name << " | Contact: " << contact << endl;
+    }
+};
+
+class Student : public LibraryUser {
+private:
+    string grade;
+
+public:
+    void setStudent(string n, int i, string c, string g) {
+        setBaseInfo(n, i, c);
+        grade = g;
+    }
+
+    void display() {
+        cout << " Student Record " << endl;
+        showBaseInfo();
+        cout << "Grade Level: " << grade << endl;
+    }
+};
+
+class Teacher : public LibraryUser {
+private:
+    string department;
+
+public:
+    void setTeacher(string n, int i, string c, string d) {
+        setBaseInfo(n, i, c);
+        department = d;
+    }
+
+    void display() {
+        cout << " Teacher Record " << endl;
+        showBaseInfo();
+        cout << "Department: " << department << endl;
+    }
+};
+
+int main() {
+    Student s;
+    s.setStudent("Rahul Sharma", 101, "rahul@mail.com", "12th Grade");
+
+    Teacher t;
+    t.setTeacher("Dr. Smith", 5001, "smith@univ.edu", "Computer Science");
+
+    s.display();
+    cout << endl;
+    t.display();
+
+    return 0;
+}
