@@ -1,0 +1,129 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+
+// 1. SINGLE INHERITANCE
+
+class Parent {
+public:
+    void house() {
+        cout << "Parent's House" << endl;
+    }
+};
+
+class Child : public Parent {
+public:
+    void car() {
+        cout << "Child's Car" << endl;
+    }
+};
+
+
+// 2. MULTIPLE INHERITANCE
+
+class Father {
+public:
+    void height() {
+        cout << "Tall height from Father" << endl;
+    }
+};
+
+class Mother {
+public:
+    void eyes() {
+        cout << "Blue eyes from Mother" << endl;
+    }
+};
+
+class Son : public Father, public Mother {
+public:
+    void show() {
+        height();
+        eyes();
+    }
+};
+
+
+// 3. HIERARCHICAL INHERITANCE
+
+class Shape {
+public:
+    void info() {
+        cout << "This is a shape" << endl;
+    }
+};
+
+class Circle : public Shape {};
+class Square : public Shape {};
+
+
+// 4. MULTILEVEL INHERITANCE
+
+class Grandfather {
+public:
+    void land() {
+        cout << "Ancestral Land" << endl;
+    }
+};
+
+class FatherLevel : public Grandfather {
+public:
+    void office() {
+        cout << "Father's Office" << endl;
+    }
+};
+
+class Grandson : public FatherLevel {
+public:
+    void bike() {
+        cout << "My Bike" << endl;
+    }
+};
+
+// 5. HYBRID INHERITANCE
+
+class Machine {
+public:
+    int power = 100;
+};
+
+class Robot : public Machine {};
+class Vehicle : public Machine {};
+
+class RoboCar : public Robot, public Vehicle {
+public:
+    void display() {
+        cout << "Power level: " << Robot::power << endl;
+    }
+};
+
+int main() {
+    cout << "--- Single Inheritance ---" << endl;
+    Child c1;
+    c1.house();
+    c1.car();
+
+    cout << "\n--- Multiple Inheritance ---" << endl;
+    Son s1;
+    s1.show();
+
+    cout << "\n--- Hierarchical Inheritance ---" << endl;
+    Circle circ;
+    Square sq;
+    circ.info();
+    sq.info();
+
+    cout << "\n--- Multilevel Inheritance ---" << endl;
+    Grandson g1;
+    g1.land();
+    g1.office();
+    g1.bike();
+
+    cout << "\n--- Hybrid Inheritance ---" << endl;
+    RoboCar rc;
+    rc.display();
+
+    return 0;
+}
