@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+
+class Base {
+public:
+    int x;
+protected:
+    int y;
+};
+
+class Derived : protected Base {
+public:
+    void setData() {
+        x = 10; 
+        y = 20;
+    }
+    void show() {
+        cout << "x: " << x << " y: " << y << endl;
+    }
+};
+
+int main() {
+    Derived obj;
+    obj.setData();
+    obj.show();
+    
+    return 0;
+}
