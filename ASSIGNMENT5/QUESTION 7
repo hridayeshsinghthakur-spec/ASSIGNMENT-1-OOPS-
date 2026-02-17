@@ -1,0 +1,55 @@
+#include <iostream>
+using namespace std;
+
+class Speedometer {
+protected:
+    int speed;
+
+public:
+    void setSpeed(int s) {
+        speed = s;
+    }
+};
+
+class FuelGauge {
+protected:
+    float fuel;
+
+public:
+    void setFuel(float f) {
+        fuel = f;
+    }
+};
+
+class Thermometer {
+protected:
+    int temp;
+
+public:
+    void setTemp(int t) {
+        temp = t;
+    }
+};
+
+class CarDashboard : public Speedometer, public FuelGauge, public Thermometer {
+public:
+    void display() {
+        cout << " CAR DASHBOARD " << endl;
+        cout << "Speed: " << speed << " km/h" << endl;
+        cout << "Fuel Level: " << fuel << "%" << endl;
+        cout << "Engine Temp: " << temp << " C" << endl;
+      
+    }
+};
+
+int main() {
+    CarDashboard myCar;
+
+    myCar.setSpeed(85);
+    myCar.setFuel(75.5);
+    myCar.setTemp(90);
+
+    myCar.display();
+
+    return 0;
+}
