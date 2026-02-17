@@ -1,46 +1,26 @@
 #include <iostream>
-#include <string>
-
 using namespace std;
 
-class Employee {
+class Base {
 protected:
-    double salary;
-
-public:
-    void setBaseSalary(double s) {
-        salary = s;
-    }
+    int score;
 };
 
-class Manager : public Employee {
-private:
-    double bonus;
-
+class Result : public Base {
 public:
-    void setBonus(double b) {
-        bonus = b;
+    void setScore(int s) {
+        score = s;
     }
 
-    void displayTotalCompensation() {
-        
-        double total = salary + bonus;
-        cout << "Base Salary: " << salary << endl;
-        cout << "Bonus: " << bonus << endl;
-        cout << "Total Pay: " << total << endl;
+    void display() {
+        cout << "Your score is: " << score << endl;
     }
 };
 
 int main() {
-    Manager m1;
-
-    m1.setBaseSalary(50000);
-    m1.setBonus(15000);
-
-    cout << " Manager Details" << endl;
-    m1.displayTotalCompensation();
-
-     
+    Result obj;
+    obj.setScore(95);
+    obj.display();
 
     return 0;
 }
