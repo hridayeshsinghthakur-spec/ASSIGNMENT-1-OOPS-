@@ -1,0 +1,53 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Book {
+protected:
+    string title;
+    string author;
+    float price;
+
+public:
+    void setBookData(string t, string a, float p) {
+        title = t;
+        author = a;
+        price = p;
+    }
+
+    void showBook() {
+        cout << "Title: " << title << endl;
+        cout << "Author: " << author << endl;
+        cout << "Price: " << price << endl;
+    }
+};
+
+class Textbook : public Book {
+private:
+    string subject;
+
+public:
+    void setTextbookData(string t, string a, float p, string s) {
+        setBookData(t, a, p);
+        subject = s;
+    }
+
+    void showTextbook() {
+        showBook();
+        cout << "Subject: " << subject << endl;
+    }
+};
+
+int main() {
+    Book b1;
+    b1.setBookData("The Great Gatsby", "F. Scott Fitzgerald", 15.99);
+    cout << " General Book " << endl;
+    b1.showBook();
+
+    Textbook t1;
+    t1.setTextbookData("Concepts of Physics", "H.C. Verma", 450.0, "Physics");
+    cout << "\nTextbook" << endl;
+    t1.showTextbook();
+
+    return 0;
+}
