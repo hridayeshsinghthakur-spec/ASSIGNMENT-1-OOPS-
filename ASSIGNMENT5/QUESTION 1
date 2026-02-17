@@ -1,0 +1,49 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Animal {
+protected:
+    string category;
+
+public:
+    void setCategory(string cat) {
+        category = cat;
+    }
+
+    void displayCategory() {
+        cout << "Category: " << category << endl;
+    }
+};
+
+class Dog : public Animal {
+private:
+    string breed;
+
+public:
+    void setBreed(string b) {
+        breed = b;
+    }
+
+    void displayDetails() {
+        displayCategory();
+        cout << "Breed: " << breed << endl;
+        cout << "Action: Barking" << endl;
+    }
+};
+
+int main() {
+    cout << " Base Class Object " << endl;
+    Animal genericAnimal;
+    genericAnimal.setCategory("Mammal");
+    genericAnimal.displayCategory();
+
+    cout << " Derived Class Object" << endl;
+    Dog myDog;
+    myDog.setCategory("Canine");
+    myDog.setBreed("Golden Retriever");
+    myDog.displayDetails();
+
+    return 0;
+}
