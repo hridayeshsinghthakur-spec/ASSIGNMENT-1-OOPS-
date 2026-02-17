@@ -1,0 +1,64 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Vehicle {
+protected:
+    string make;
+    string model;
+    int year;
+
+public:
+    void setVehicle(string mk, string md, int yr) {
+        make = mk;
+        model = md;
+        year = yr;
+    }
+
+    void showVehicle() {
+        cout << "Vehicle: " << year << " " << make << " " << model << endl;
+    }
+};
+
+class Truck : public Vehicle {
+protected:
+    float load_capacity;
+
+public:
+    void setTruck(string mk, string md, int yr, float cap) {
+        setVehicle(mk, md, yr);
+        load_capacity = cap;
+    }
+
+    void showTruck() {
+        showVehicle();
+        cout << "Load Capacity: " << load_capacity << " tons" << endl;
+    }
+};
+
+class RefrigeratedTruck : public Truck {
+private:
+    float temperature_control;
+
+public:
+    void setRefTruck(string mk, string md, int yr, float cap, float temp) {
+        setTruck(mk, md, yr, cap);
+        temperature_control = temp;
+    }
+
+    void showRefTruck() {
+        showTruck();
+        cout << "Temperature Set: " << temperature_control << " C" << endl;
+    }
+};
+
+int main() {
+    RefrigeratedTruck myTruck;
+
+    myTruck.setRefTruck("Volvo", "FH16", 2024, 25.5, -18.0);
+
+    cout << "\n Logistics Fleet Details " << endl;
+    myTruck.showRefTruck();
+
+    return 0;
+}
