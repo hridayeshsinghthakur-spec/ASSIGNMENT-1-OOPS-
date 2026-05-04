@@ -1,0 +1,91 @@
+#include <iostream>
+using namespace std;
+
+class Student
+{
+public:
+    virtual void input() = 0;
+    virtual void display() = 0;
+};
+
+class Engineering : public Student
+{
+    string name;
+    int rollNo;
+
+public:
+    void input()
+    {
+        name = "Rahul";
+        rollNo = 101;
+    }
+
+    void display()
+    {
+        cout << "Engineering Student" << endl;
+        cout << "Name: " << name << endl;
+        cout << "Roll No: " << rollNo << endl;
+    }
+};
+
+class Medicine : public Student
+{
+    string name;
+    int rollNo;
+
+public:
+    void input()
+    {
+        name = "Aman";
+        rollNo = 102;
+    }
+
+    void display()
+    {
+        cout << "Medicine Student" << endl;
+        cout << "Name: " << name << endl;
+        cout << "Roll No: " << rollNo << endl;
+    }
+};
+
+class Science : public Student
+{
+    string name;
+    int rollNo;
+
+public:
+    void input()
+    {
+        name = "Neha";
+        rollNo = 103;
+    }
+
+    void display()
+    {
+        cout << "Science Student" << endl;
+        cout << "Name: " << name << endl;
+        cout << "Roll No: " << rollNo << endl;
+    }
+};
+
+int main()
+{
+    Engineering e;
+    Medicine m;
+    Science s;
+
+    Student *ptr[3];
+
+    ptr[0] = &e;
+    ptr[1] = &m;
+    ptr[2] = &s;
+
+    for(int i = 0; i < 3; i++)
+    {
+        ptr[i]->input();
+        ptr[i]->display();
+        cout << endl;
+    }
+
+    return 0;
+}
