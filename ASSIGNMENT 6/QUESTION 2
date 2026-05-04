@@ -1,0 +1,177 @@
+#include <iostream>
+using namespace std;
+
+class Book
+{
+public:
+    string title;
+    string author;
+    string ISBN;
+
+    // Default constructor
+    Book()
+    {
+        this->title = "";
+        this->author = "";
+        this->ISBN = "";
+    }
+
+    // Parameterized constructor
+    Book(string title, string author, string ISBN)
+    {
+        this->title = title;
+        this->author = author;
+        this->ISBN = ISBN;
+    }
+
+    // Copy constructor
+    Book(const Book &b)
+    {
+        this->title = b.title;
+        this->author = b.author;
+        this->ISBN = b.ISBN;
+    }
+
+    void displayDetails()
+    {
+        cout << "Title: " << this->title << endl;
+        cout << "Author: " << this->author << endl;
+        cout << "ISBN: " << this->ISBN << endl;
+    }
+};
+
+class Library
+{
+    Book books[100];
+    int count;
+
+public:
+    // Default constructor
+    Library()
+    {
+        this->count = 0;
+    }
+
+    bool addNewBook(string &title, string &author, string &ISBN)
+    {
+        if(this->count >= 100)
+        {
+            return false;
+        }
+
+        Book b(title, author, ISBN);
+        this->books[this->count] = b;
+        this->count++;
+
+        return true;
+    }
+
+    bool removeBooks(string &ISBN)
+    {
+        for(int i = 0; i < this->count; i++)
+        {
+            if(this->books[i].ISBN == ISBN)
+            {
+                for(int j = i; j < this->count - 1; j++)
+                {
+                    this->books[j] = this->books[j + 1];
+                }
+
+                this->count--;
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    void displayDetails()
+    {
+        if(this->count == 0)
+        {
+            cout << "No books available in library." << endl;
+            return;
+        }
+
+        cout << "\nBooks in Library:\n";
+
+        for(int i = 0; i < this->count; i++)
+        {
+            cout << "\nBook " << i + 1 << endl;
+            this->books[i].displayDetails();
+        }
+    }
+};
+
+int main()
+{
+    // 1. Array of objects using initializer list
+    Book bookList[5] =
+    {
+        Book("C++ Programming", "Bjarne Stroustrup", "101"),
+        Book("Data Structures", "Mark Allen", "102"),
+        Book("Operating System", "Galvin", "103"),
+        Book("Computer Networks", "Tanenbaum", "104"),
+        Book("Database System", "Korth", "105")
+    };
+
+    cout << "Array of books using initializer list:\n";
+    for(int i = 0; i < 5; i++)
+    {
+        cout << "\nBook " << i + 1 << endl;
+        bookList[i].displayDetails();
+    }
+
+    // 2. Dynamic initialization
+    Book *dynamicBook = new Book("Python Basics", "Guido van Rossum", "106");
+
+    cout << "\nDynamically initialized book:\n";
+    dynamicBook->displayDetails();
+
+    delete dynamicBook;
+
+    // Library demonstration
+    Library lib;
+
+    string title, author, ISBN;
+
+    title = "C++ Programming";
+    author = "Bjarne Stroustrup";
+    ISBN = "101";
+    lib.addNewBook(title, author, ISBN);
+
+    title = "Data Structures";
+    author = "Mark Allen";
+    ISBN = "102";
+    lib.addNewBook(title, author, ISBN);
+
+    title = "Operating System";
+    author = "Galvin";
+    ISBN = "103";
+    lib.addNewBook(title, author, ISBN);
+
+    title = "Computer Networks";
+    author = "Tanenbaum";
+    ISBN = "104";
+    lib.addNewBook(title, author, ISBN);
+
+    title = "Database System";
+    author = "Korth";
+    ISBN = "105";
+    lib.addNewBook(title, author, ISBN);
+
+    cout << "\nBefore removing book:";
+    lib.displayDetails();
+
+    ISBN = "103";
+
+    if(lib.removeBooks(ISBN))
+        cout << "\nBook removed successfully." << endl;
+    else
+        cout << "\nBook not found." << endl;
+
+    cout << "\nAfter removing book:";
+    lib.displayDetails();
+
+    return 0;
+}
