@@ -1,0 +1,30 @@
+#include <iostream>
+using namespace std;
+
+class Test
+{
+    float value;
+
+public:
+    // Constructor for conversion
+    Test(float x)
+    {
+        value = x;
+    }
+
+    void display()
+    {
+        cout << "Value in object = " << value << endl;
+    }
+};
+
+int main()
+{
+    float num = 5.75;
+
+    Test t = num;   // automatic conversion
+
+    t.display();
+
+    return 0;
+}
