@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+
+class Student
+{
+    int roll;
+    string name;
+
+public:
+    // Friend function for input
+    friend istream& operator>>(istream &in, Student &s)
+    {
+        cout << "Enter Roll No: ";
+        in >> s.roll;
+
+        cout << "Enter Name: ";
+        in >> s.name;
+
+        return in;
+    }
+
+    // Friend function for output
+    friend ostream& operator<<(ostream &out, Student &s)
+    {
+        out << "Roll No: " << s.roll << endl;
+        out << "Name: " << s.name << endl;
+
+        return out;
+    }
+};
+
+int main()
+{
+    Student s;
+
+    cin >> s;    // calls overloaded >>
+    cout << s;   // calls overloaded <<
+
+    return 0;
+}
