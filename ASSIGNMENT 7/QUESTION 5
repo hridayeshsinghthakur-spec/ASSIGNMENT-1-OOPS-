@@ -1,0 +1,69 @@
+#include <iostream>
+using namespace std;
+
+class Time
+{
+    int h, m, s;
+
+public:
+    // Constructor
+    Time(int h1 = 0, int m1 = 0, int s1 = 0)
+    {
+        h = h1;
+        m = m1;
+        s = s1;
+    }
+
+    // Overload + operator
+    Time operator+(Time t)
+    {
+        Time temp;
+
+        temp.s = s + t.s;
+        temp.m = m + t.m;
+        temp.h = h + t.h;
+
+        // Handle seconds
+        if(temp.s >= 60)
+        {
+            temp.m += temp.s / 60;
+            temp.s = temp.s % 60;
+        }
+
+        // Handle minutes
+        if(temp.m >= 60)
+        {
+            temp.h += temp.m / 60;
+            temp.m = temp.m % 60;
+        }
+
+        return temp;
+    }
+
+    // Display function
+    void display()
+    {
+        cout << h << "h " << m << "m " << s << "s" << endl;
+    }
+};
+
+int main()
+{
+    Time t1(2, 45, 50);
+    Time t2(1, 20, 30);
+
+    Time t3;
+
+    t3 = t1 + t2;   // operator overloading used here
+
+    cout << "Time 1: ";
+    t1.display();
+
+    cout << "Time 2: ";
+    t2.display();
+
+    cout << "Sum of Time: ";
+    t3.display();
+
+    return 0;
+}
