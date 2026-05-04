@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+class Data
+{
+    int a, b, c;
+
+public:
+    // Overloading () operator
+    void operator()(int x, int y, int z)
+    {
+        a = x;
+        b = y;
+        c = z;
+    }
+
+    void display()
+    {
+        cout << "Values: " << a << " " << b << " " << c << endl;
+    }
+};
+
+int main()
+{
+    Data obj;
+
+    obj(10, 20, 30);   // looks like function call
+
+    obj.display();
+
+    return 0;
+}
