@@ -1,0 +1,61 @@
+#include <iostream>
+
+class Complex
+{
+    double real;
+    double imag;
+
+public:
+    // Parameterized constructor
+    Complex(double r, double i)
+    {
+        real = r;
+        imag = i;
+    }
+
+    // Copy constructor
+    Complex(const Complex &c)
+    {
+        real = c.real;
+        imag = c.imag;
+    }
+
+    // Display function
+    void display()
+    {
+        std::cout << real << " + " << imag << "i" << std::endl;
+    }
+
+    // Friend function declaration
+    friend void sum(Complex, Complex);
+};
+
+// Friend function definition
+void sum(Complex c1, Complex c2)
+{
+    double r = c1.real + c2.real;
+    double i = c1.imag + c2.imag;
+
+    std::cout << "Sum = " << r << " + " << i << "i" << std::endl;
+}
+
+int main()
+{
+    Complex c1(2.5, 3.5);   // parameterized constructor
+    Complex c2(1.5, 4.5);
+
+    Complex c3 = c1;        // copy constructor
+
+    std::cout << "Complex Number 1: ";
+    c1.display();
+
+    std::cout << "Complex Number 2: ";
+    c2.display();
+
+    std::cout << "Copied Complex Number: ";
+    c3.display();
+
+    sum(c1, c2);            // friend function call
+
+    return 0;
+}
