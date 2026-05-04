@@ -1,0 +1,57 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+class STRING
+{
+    char str[100];
+
+public:
+    // Constructor
+    STRING(const char s[] = "")
+    {
+        strcpy(str, s);
+    }
+
+    // Overload == operator
+    bool operator==(STRING s)
+    {
+        return (strcmp(str, s.str) == 0);
+    }
+
+    // Overload + operator
+    STRING operator+(STRING s)
+    {
+        STRING temp;
+        strcpy(temp.str, str);
+        strcat(temp.str, s.str);
+        return temp;
+    }
+
+    // Display function
+    void display()
+    {
+        cout << str << endl;
+    }
+};
+
+int main()
+{
+    STRING s1("Hello ");
+    STRING s2("World");
+    STRING s3;
+
+    // Concatenation
+    s3 = s1 + s2;
+
+    cout << "Concatenated String: ";
+    s3.display();
+
+    // Comparison
+    if(s1 == s2)
+        cout << "Strings are equal\n";
+    else
+        cout << "Strings are not equal\n";
+
+    return 0;
+}
