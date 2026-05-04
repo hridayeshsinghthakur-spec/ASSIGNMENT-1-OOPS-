@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+class Test
+{
+    float value;
+
+public:
+    // Constructor
+    Test(float v)
+    {
+        value = v;
+    }
+
+    // Conversion function (UDT → float)
+    operator float()
+    {
+        return value;
+    }
+};
+
+int main()
+{
+    Test t(7.25);
+
+    float num;
+
+    num = t;   // automatic conversion
+
+    cout << "Converted value = " << num << endl;
+
+    return 0;
+}
