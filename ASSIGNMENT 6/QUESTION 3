@@ -1,0 +1,100 @@
+#include <iostream>
+#include <string>
+
+class Account
+{
+    const long accountNumber;
+    long transactionID;
+    std::string transactionType;
+    double balance;
+
+public:
+    Account(const long accNo, const double bal)
+        : accountNumber(accNo)
+    {
+        transactionID = 0;
+        transactionType = "No Transaction";
+        balance = bal;
+    }
+
+    long depositAmount(const long to, const long from, const double amount);
+
+    long creditAmount(const long to, const long from, const double amount);
+
+    void displayDetails() const;
+};
+
+long Account::depositAmount(const long to, const long from, const double amount)
+{
+    static long tid = 1000;
+
+    if(accountNumber == from)
+    {
+        balance = balance - amount;
+        transactionType = "Debited";
+        transactionID = ++tid;
+    }
+
+    return transactionID;
+}
+
+long Account::creditAmount(const long to, const long from, const double amount)
+{
+    static long tid = 2000;
+
+    if(accountNumber == to)
+    {
+        balance = balance + amount;
+        transactionType = "Credited";
+        transactionID = ++tid;
+    }
+
+    return transactionID;
+}
+
+void Account::displayDetails() const
+{
+    std::cout << "Account Number: " << accountNumber << std::endl;
+    std::cout << "Balance: " << balance << std::endl;
+    std::cout << "Transaction ID: " << transactionID << std::endl;
+    std::cout << "Transaction Type: " << transactionType << std::endl;
+    std::cout << "------------------------" << std::endl;
+}
+
+int main()
+{
+    Account accounts[5] =
+    {
+        Account(101, 5000),
+        Account(102, 7000),
+        Account(103, 9000),
+        Account(104, 6000),
+        Account(105, 8000)
+    };
+
+    long to, from;
+    double amount;
+
+    from = 101;
+    to = 102;
+    amount = 1000;
+
+    accounts[0].depositAmount(to, from, amount);
+    accounts[1].creditAmount(to, from, amount);
+
+    from = 103;
+    to = 104;
+    amount = 1500;
+
+    accounts[2].depositAmount(to, from, amount);
+    accounts[3].creditAmount(to, from, amount);
+
+    std::cout << "Account Details After Transactions:\n\n";
+
+    for(int i = 0; i < 5; i++)
+    {
+        accounts[i].displayDetails();
+    }
+
+    return 0;
+}
