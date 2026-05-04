@@ -1,0 +1,105 @@
+#include <iostream>
+using namespace std;
+
+class Book{
+    string title;
+    string author;
+    string ISBN;
+     
+}
+
+class Library{
+    Book books[100];
+    int count;
+}
+
+  Library(){
+      count = 0;
+  }
+  
+  bool addnewbook(string &title, string &author , string &ISBN){
+      if( count > 100){
+          return False ;
+      }
+      
+      books[count].title = title;
+       books[count].author = author;
+        books[count].ISBN = ISBN;
+        
+        count++;
+        return True;
+      
+  }
+  
+  bool removebook(string &ISBN);
+  
+  void dispdetails(){
+      if ( count == 0){
+          cout << "No books available in the library";
+      }
+      else {
+          for(int i = 0 ; i < count ; i++){
+          cout << "Book "<< i+1 << endl;
+          cout << "title"<< books[i].title << endl;
+          cout << "author"<< books[i].author << endl;
+          cout << "ISBN"<< books[i].ISBN << endl;
+  }
+ 
+      bool Library::removeBooks(string &ISBN)
+{
+    for(int i = 0; i < count; i++)
+    {
+        if(books[i].ISBN == ISBN)
+        {
+            books[i] = books[count - 1]; 
+            count--;                    
+            return true;
+        }
+    }
+    return false;
+}
+int main{
+     Library lib;
+
+    string title, author, ISBN;
+
+    title = "C++ Programming";
+    author = "Bjarne Stroustrup";
+    ISBN = "101";
+    lib.addNewBook(title, author, ISBN);
+
+    title = "Data Structures";
+    author = "Mark Allen";
+    ISBN = "102";
+    lib.addNewBook(title, author, ISBN);
+
+    title = "Operating System";
+    author = "Galvin";
+    ISBN = "103";
+    lib.addNewBook(title, author, ISBN);
+
+    title = "Computer Networks";
+    author = "Tanenbaum";
+    ISBN = "104";
+    lib.addNewBook(title, author, ISBN);
+
+    title = "Database System";
+    author = "Korth";
+    ISBN = "105";
+    lib.addNewBook(title, author, ISBN);
+
+    cout << "Before removing book:";
+    lib.displayDetails();
+
+    ISBN = "103";
+
+    if(lib.removeBooks(ISBN))
+        cout << "\nBook removed successfully." << endl;
+    else
+        cout << "\nBook not found." << endl;
+
+    cout << "\nAfter removing book:";
+    lib.displayDetails();
+
+    return 0;
+}
