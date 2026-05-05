@@ -1,0 +1,75 @@
+#include <iostream>
+using namespace std;
+
+template <typename T>
+class Queue
+{
+    T arr[100];
+    int front, rear;
+
+public:
+    Queue()
+    {
+        front = 0;
+        rear = -1;
+    }
+
+    void enqueue(T x)
+    {
+        if(rear == 99)
+        {
+            cout << "Queue Overflow\n";
+            return;
+        }
+        arr[++rear] = x;
+        cout << x << " enqueued\n";
+    }
+
+    void dequeue()
+    {
+        if(front > rear)
+        {
+            cout << "Queue Underflow\n";
+            return;
+        }
+        cout << arr[front] << " dequeued\n";
+        front++;
+    }
+
+    void display()
+    {
+        if(front > rear)
+        {
+            cout << "Queue is empty\n";
+            return;
+        }
+
+        cout << "Queue elements: ";
+        for(int i = front; i <= rear; i++)
+            cout << arr[i] << " ";
+        cout << endl;
+    }
+};
+
+int main()
+{
+    Queue<int> q1;   
+
+    q1.enqueue(10);
+    q1.enqueue(20);
+    q1.enqueue(30);
+
+    q1.display();
+
+    q1.dequeue();
+    q1.display();
+
+    Queue<float> q2; 
+
+    q2.enqueue(1.1);
+    q2.enqueue(2.2);
+
+    q2.display();
+
+    return 0;
+}
