@@ -1,0 +1,35 @@
+#include <iostream>
+using namespace std;
+
+template <typename T1, typename T2>
+class Pair
+{
+    T1 value1;
+    T2 value2;
+
+public:
+    Pair(T1 a, T2 b)
+    {
+        value1 = a;
+        value2 = b;
+    }
+
+    void display()
+    {
+        cout << "Pair values: " << value1 << " , " << value2 << endl;
+    }
+};
+
+int main()
+{
+    Pair<int, int> p1(10, 20);
+    p1.display();
+
+    Pair<float, float> p2(2.5, 3.5);
+    p2.display();
+
+    Pair<char, int> p3('A', 100);
+    p3.display();
+
+    return 0;
+}
