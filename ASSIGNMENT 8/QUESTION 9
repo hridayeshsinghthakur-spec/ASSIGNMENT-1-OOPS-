@@ -1,0 +1,60 @@
+#include <iostream>
+using namespace std;
+
+template <typename T>
+class Arithmetic
+{
+    T a, b;
+
+public:
+    // Constructor
+    Arithmetic(T x, T y)
+    {
+        a = x;
+        b = y;
+    }
+
+    void add()
+    {
+        cout << "Addition: " << a + b << endl;
+    }
+
+    void subtract()
+    {
+        cout << "Subtraction: " << a - b << endl;
+    }
+
+    void multiply()
+    {
+        cout << "Multiplication: " << a * b << endl;
+    }
+
+    void divide()
+    {
+        if(b != 0)
+            cout << "Division: " << a / b << endl;
+        else
+            cout << "Division by zero not allowed" << endl;
+    }
+};
+
+int main()
+{
+    Arithmetic<int> obj1(10, 5);
+
+    obj1.add();
+    obj1.subtract();
+    obj1.multiply();
+    obj1.divide();
+
+    cout << endl;
+
+    Arithmetic<float> obj2(5.5, 2.0);
+
+    obj2.add();
+    obj2.subtract();
+    obj2.multiply();
+    obj2.divide();
+
+    return 0;
+}
