@@ -1,0 +1,27 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main()
+{
+    ofstream file;           
+    file.open("NUM.TXT");    
+
+    if(!file)
+    {
+        cout << "Error opening file!" << endl;
+        return 1;
+    }
+
+    // Write numbers from 1 to 200
+    for(int i = 1; i <= 200; i++)
+    {
+        file << i << endl;
+    }
+
+    file.close();            
+
+    cout << "Numbers written to NUM.TXT successfully." << endl;
+
+    return 0;
+}
