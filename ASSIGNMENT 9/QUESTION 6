@@ -1,0 +1,45 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main()
+{
+    fstream file("data.txt", ios::out | ios::in);
+
+    // i. Write "Hello World" and show put pointer position
+    string text = "Hello World";
+
+    for(int i = 0; i < text.length(); i++)
+    {
+        file.put(text[i]);   // write one character
+        cout << "After writing '" << text[i] 
+             << "' position = " << file.tellp() << endl;
+    }
+
+    file.close();
+
+    // iii. Replace "World" with "C++"
+    file.open("data.txt", ios::in | ios::out);
+
+    // Move to position of 'W' (index 6)
+    file.seekp(6, ios::beg);
+
+    file << "C++  ";   // extra spaces to overwrite "World" fully
+
+    file.close();
+
+    // Display final content
+    file.open("data.txt", ios::in);
+
+    char ch;
+    cout << "\nFinal file content:\n";
+
+    while(file.get(ch))
+    {
+        cout << ch;
+    }
+
+    file.close();
+
+    return 0;
+}
